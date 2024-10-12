@@ -10,3 +10,8 @@ type Task struct {
 type TaskList struct {
 	Items []Task
 }
+
+// Add adds a new task to the list.
+func (t *TaskList) Add(title string) {
+	t.Items = append(t.Items, Task{Title: title, Completed: false})
+}
