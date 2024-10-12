@@ -29,3 +29,12 @@ func (t *TaskList) Remove(index int) (string, error) {
 	t.Items = append(t.Items[:index], t.Items[index+1:]...)
 	return task, nil
 }
+
+// Complete marks a task as complete.
+func (t *TaskList) Complete(index int) (string, error) {
+	if index < 0 || index >= len(t.Items) {
+		return "", fmt.Errorf("index out of range")
+	}
+	t.Items[index].Completed = true
+	return t.Items[index].Title, nil
+}
