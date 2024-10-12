@@ -38,3 +38,16 @@ func (t *TaskList) Complete(index int) (string, error) {
 	t.Items[index].Completed = true
 	return t.Items[index].Title, nil
 }
+
+// List returns all tasks with their status.
+func (t *TaskList) List() []string {
+	var tasks []string
+	for i, task := range t.Items {
+		status := "[ ]"
+		if task.Completed {
+			status = "[x]"
+		}
+		tasks = append(tasks, fmt.Sprintf("%d. %s %s", i+1, status, task.Title))
+	}
+	return tasks
+}
